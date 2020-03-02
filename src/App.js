@@ -22,10 +22,10 @@ function App() {
         crossorigin="anonymous"
       />
       <Navbar>
-        <NavLink activeStyle={activeStyle} exact to="/">Home page</NavLink>
-        <NavLink activeStyle={activeStyle} to="/onduty">Who is on duty</NavLink>
-        <NavLink activeStyle={activeStyle} to="/signup">Sign up</NavLink>
-        <NavLink activeStyle={activeStyle} to="/doctorview">Doctor's view</NavLink>
+        <NavLink activeStyle={activeStyle} exact to="/">Home</NavLink>
+        <NavLink activeStyle={activeStyle} to="/onduty">Doctor Schedule</NavLink>
+        <NavLink activeStyle={activeStyle} to="/signup">Patient Signup</NavLink>
+        <NavLink activeStyle={activeStyle} to="/doctorview">Patient database</NavLink>
       </Navbar>
       <Switch>
         <Route path="/onduty" component={OnDuty} />
