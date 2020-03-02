@@ -16,12 +16,9 @@ export default function Practice() {
 
   return (
     <div>
-      <p style={{fontSize: "30px",
-                 fontWeight: "bold"}}>Welcome to AMS GPs</p>
       <p>We are: {isOpen()}</p>  
       <p>To make an appoinment</p> 
       <p>call: 020 555 5555</p>
-
     </div>
   )
 }
