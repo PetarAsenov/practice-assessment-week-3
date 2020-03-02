@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react'
-import { Switch, Route, Link, NavLink, useHistory, useParams} from "react-router-dom";
 import  axios from "axios"
 import Practice from './Practice'
 
@@ -42,9 +41,9 @@ export default function OnDuty() {
                 )})
             }
           </table>
+          <Practice />
         </div>
       }  
-      <Practice />
     </div>
   )
 }

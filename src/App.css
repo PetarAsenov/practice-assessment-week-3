@@ -60,3 +60,10 @@
 .dutyTableRow > td{
   border: solid black 1px;
 }
+
+.patientBox {
+  margin: auto;
+  margin-bottom: 10px;
+  width: 50%;
+  border: solid black 1px;
+}

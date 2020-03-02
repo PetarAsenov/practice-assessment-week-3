@@ -4,8 +4,7 @@ export default function Practice() {
  
   const date = new Date()
   const hours = date.getHours()
-  const minutes = date.getMinutes()
-  // console.log(hours,minutes)
+  
   function isOpen() {
     if(hours >= 8 && hours < 17) {
       return 'open'
