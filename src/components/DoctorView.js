@@ -59,7 +59,16 @@ export default function DoctorView() {
       {patientInfo === 'Loading'
       ? patientInfo
       : arrayPatient.map((patient,index) => {
-        return    <PatientDetails key={index} patientInfo={arrayPatient} id={patient.id} />       
+        return    <PatientDetails 
+                    firstName={patient.firstName} 
+                    lastName={patient.lastName} 
+                    key={index} 
+                    patientInfo={arrayPatient} 
+                    id={patient.id}
+                    prescriptions={patient.prescriptions}
+                    gender={patient.gender}
+                    email={patient.email}
+                    phoneNumber={patient.phoneNumber} />       
       })}
     </div>
   )

@@ -10,30 +10,23 @@ export default function PatientsDetails(props) {
 
   return (
     <div className="patientBox">
-        {props.patientInfo.map((patient) => {
-        if (patient.id === props.id){
-        return (
-          <div  key={patient.id}>
-            <p>name {patient.firstName} {patient.lastName}</p>
-            <p>id {patient.id}</p>
-            <p>date of birth {patient.dateOfBirth}</p>
-          </div>
-        )}})
-        }   
+      <div>
+        <p>name {props.firstName} {props.lastName}</p>
+        <p>id {props.id}</p>
+        <p>date of birth {props.dateOfBirth}</p>
+      </div>   
+      {show && 
+      <div>
+        <p>email {props.email}</p>
+        <p>phone Number {props.phoneNumber}</p>
+        <p>gender {props.gender}</p>
+        <p>prescriptions</p>
+        {props.prescriptions.map((presc,index) => {
+          return <li key={index}>{presc}</li>})
+        }
+      </div>
+      }
       <button onClick={showDetails} >{show ?'hide details' : 'show details'}</button>
-      {show && props.patientInfo.map((patient) => {
-        if (patient.id === props.id)
-        return (
-          <div key={patient.id}>
-            <p>email {patient.email}</p>
-            <p>phone Number {patient.phoneNumber}</p>
-            <p>gender {patient.gender}</p>
-            <p>prescriptions</p>
-              {patient.prescriptions.map(presc => <li key={patient.id + presc}>{presc}</li>)}
-          </div>
-          
-        )
-      })}
     </div>
   )
 }
