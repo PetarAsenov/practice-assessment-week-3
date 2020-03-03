@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
-import PatientDetails from './DoctorViewProps'
+import PatientDetails from './PatientsDetails'
 
 export default function DoctorView() {
 
@@ -19,8 +19,6 @@ export default function DoctorView() {
     fetchDoctorData()
     
   },[])
-  console.log('Test',doctorInfo)
-
 
   const [patientInfo, setPatientInfo] = useState('Loading')
 
@@ -33,45 +31,16 @@ export default function DoctorView() {
     fetchPatientData()
     
   },[])
-  console.log('Test doctor',doctorInfo)
-  console.log('Test patient',patientInfo)
-
-//   id: "5856675843"
-// firstName: "Milt"
-// lastName: "Rosenbaum"
-// gender: "Male"
-// dateOfBirth: "15/01/2005"
-// email: "mrosenbaum0@fastcompany.com"
-// phoneNumber: "+351 161 160 5674"
-// prescriptions: ["Lidocaine Viscous"]
-// doctorId: 1
-  
-
-  const lookupSelectedDoctor = (doctorInfo) => {
-    if(doctorInfo !=='Loading' && selectDoctor !== 'all') {
-    const filteredDoctor = doctorInfo.filter(doctor => {
-     return doctor.doctor === selectDoctor
-    })
-    return filteredDoctor[0].id
-    }  
-  }
-
   
   const arrayPatient = patientInfo === 'Loading'
   ? []
   : [...patientInfo].filter((patient) => {
     if(selectDoctor === 'all'){
       return patient
-    } else if(patient.doctorId == lookupSelectedDoctor(doctorInfo)) {
+    } else if(patient.doctorId == selectDoctor) {
       return patient
     }
   })
-  
-
-  console.log(lookupSelectedDoctor(doctorInfo))
-  console.log(arrayPatient)
-
-  
   
   return (
     <div>
@@ -83,23 +52,14 @@ export default function DoctorView() {
           <option value="all" >all</option>
           {doctorInfo === 'Loading'
             ? doctorInfo
-            : doctorInfo.map(doctor => <option key={doctor.id} value={doctor.doctor}>{doctor.doctor}</option>)}
+            : doctorInfo.map(doctor => <option key={doctor.id} value={doctor.id}>{doctor.doctor}</option>)}
         </select>
       </div> 
       
       {patientInfo === 'Loading'
       ? patientInfo
-      : arrayPatient.map(patient => {
-        return (
-          <div className="patientBox" key={patient.id}>
-            <p>name {patient.firstName} {patient.lastName}</p>
-            <p>id {patient.id}</p>
-            <p>date of birth {patient.dateOfBirth}</p>
-            
-            <PatientDetails patientInfo={arrayPatient} id={patient.id} show={()=> true}/>
-          </div>
-          
-        )
+      : arrayPatient.map((patient,index) => {
+        return    <PatientDetails key={index} patientInfo={arrayPatient} id={patient.id} />       
       })}
     </div>
   )

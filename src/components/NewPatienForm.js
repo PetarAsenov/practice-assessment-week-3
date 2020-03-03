@@ -8,20 +8,25 @@ export default function NewPatienForm() {
   const [genderState, setGender] = useState('')
   const [dateOfBirthState, setDateOfBirth] = useState('')
 
-
-  function submit() {
+  function submit(event) {
+    event.preventDefault()
   console.log(`firstName: ${firstNameState}
   lastNameState: ${lastNameState}
   emailState: ${emailState}
   phoneState: ${phoneState}
   genderState: ${genderState}
   dateOfBirthState: ${dateOfBirthState}`)
+    setFirstName('')
+    setLastName('')
+    setEmail('')
+    setPhone('')
+    setGender('')
+    setDateOfBirth('')
   }
-
 
   return (
     <div>
-      <form>
+      <form onSubmit={submit}>
       <p style={{fontSize: "30px",
                  fontWeight: "bold"}}>Patient Signup</p>
         <div>
@@ -52,8 +57,9 @@ export default function NewPatienForm() {
           <label htmlFor="dateOfBirth">date of birth</label>
           <input type="date" name="dateOfBirth" id="dateOfBirth" value={dateOfBirthState} onChange={event => setDateOfBirth(event.target.value)}/>
         </div>
+        <input type="submit"/>
       </form>
-      <button onClick={submit}>Submit</button>
+     
     </div>
   )
 }
