@@ -5,7 +5,7 @@ import PatientDetails from './DoctorViewProps'
 export default function DoctorView() {
 
   const [doctorInfo, setDoctorInfo] = useState('Loading')
-  const [selectDoctor, setSelectDoctor] = useState('')
+  const [selectDoctor, setSelectDoctor] = useState('all')
 
   function compare_name(patient_a, patient_b) {
     return patient_a.lastName.localeCompare(patient_b.lastName);
@@ -45,9 +45,34 @@ export default function DoctorView() {
 // phoneNumber: "+351 161 160 5674"
 // prescriptions: ["Lidocaine Viscous"]
 // doctorId: 1
+  
 
- 
+  const lookupSelectedDoctor = (doctorInfo) => {
+    if(doctorInfo !=='Loading' && selectDoctor !== 'all') {
+    const filteredDoctor = doctorInfo.filter(doctor => {
+     return doctor.doctor === selectDoctor
+    })
+    return filteredDoctor[0].id
+    }  
+  }
 
+  
+  const arrayPatient = patientInfo === 'Loading'
+  ? []
+  : [...patientInfo].filter((patient) => {
+    if(selectDoctor === 'all'){
+      return patient
+    } else if(patient.doctorId == lookupSelectedDoctor(doctorInfo)) {
+      return patient
+    }
+  })
+  
+
+  console.log(lookupSelectedDoctor(doctorInfo))
+  console.log(arrayPatient)
+
+  
+  
   return (
     <div>
       <p style={{fontSize: "30px",
@@ -55,7 +80,7 @@ export default function DoctorView() {
       <div>
         <span>Doctor </span>
         <select name="doctor" id="doctor" value={selectDoctor} onChange={event => setSelectDoctor(event.target.value)}>
-          <option value="" disabled>select</option>
+          <option value="all" >all</option>
           {doctorInfo === 'Loading'
             ? doctorInfo
             : doctorInfo.map(doctor => <option key={doctor.id} value={doctor.doctor}>{doctor.doctor}</option>)}
@@ -64,14 +89,14 @@ export default function DoctorView() {
       
       {patientInfo === 'Loading'
       ? patientInfo
-      : patientInfo.map(patient => {
+      : arrayPatient.map(patient => {
         return (
           <div className="patientBox" key={patient.id}>
             <p>name {patient.firstName} {patient.lastName}</p>
             <p>id {patient.id}</p>
             <p>date of birth {patient.dateOfBirth}</p>
             
-            <PatientDetails patientInfo={patientInfo} id={patient.id} show={()=>patient.id}/>
+            <PatientDetails patientInfo={arrayPatient} id={patient.id} show={()=> true}/>
           </div>
           
         )

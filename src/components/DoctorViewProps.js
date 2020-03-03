@@ -16,21 +16,19 @@ export default function PatientsDetails(props) {
   return (
     <div>
       <button onClick={showDetails} >{show ?'hide details' : 'show details'}</button>
-      <p>{show && props.patientInfo.map((patient) => {
+      {show && props.patientInfo.map((patient) => {
         if (patient.id === props.id)
         return (
-          <div>
+          <div key={patient.id}>
             <p>email {patient.email}</p>
             <p>phone Number {patient.phoneNumber}</p>
             <p>gender {patient.gender}</p>
             <p>perscriptions</p>
-            <ul>
-              {patient.prescriptions.map(presc => <li>{presc}</li>)}
-            </ul>
+              {patient.prescriptions.map(presc => <li key={patient.id + presc}>{presc}</li>)}
           </div>
           
         )
-      })}</p>
+      })}
     </div>
   )
 }
