@@ -1,24 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Switch, Route, NavLink} from "react-router-dom";
 import './App.css';
+import Navbar from 'react-bootstrap/Navbar'
+import HomePage from './components/HomePage'
+import DoctorView from './components/DoctorView'
+import OnDuty from './components/OnDuty'
+import NewPatientForm from './components/NewPatienForm'
 
 function App() {
+  const activeStyle={
+    fontWeight: "bold",
+    color: "red"
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     
+      <Navbar>
+        <NavLink activeStyle={activeStyle} exact to="/">Home</NavLink>
+        <NavLink activeStyle={activeStyle} to="/onduty">Doctor Schedule</NavLink>
+        <NavLink activeStyle={activeStyle} to="/signup">Patient Signup</NavLink>
+        <NavLink activeStyle={activeStyle} to="/doctorview">Patient database</NavLink>
+      </Navbar>
+      <Switch>
+        <Route path="/onduty" component={OnDuty} />
+        <Route path="/doctorview" component={DoctorView} />
+        <Route path="/signup" component={NewPatientForm} />
+        <Route path="/" component={HomePage} />
+      </Switch>
     </div>
   );
 }

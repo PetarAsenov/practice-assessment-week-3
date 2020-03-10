@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+.dutyTable {
+  margin: auto;
+  width: 50%;
+  border: solid black 1px;
+}
+
+.dutyTableHead {
+  background-color: grey;
+  border: solid black 1px;
+}
+
+.dutyTableHead > tr > th{
+  color: white;
+  border: solid black 1px;
+}
+
+.dutyTableRow {
+  border: solid black 1px;
+}
+
+.dutyTableRow > td{
+  border: solid black 1px;
+}
+
+.patientBox {
+  margin: auto;
+  margin-bottom: 10px;
+  width: 50%;
+  border: solid black 1px;
+}
